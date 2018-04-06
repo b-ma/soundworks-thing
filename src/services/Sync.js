@@ -33,14 +33,20 @@ class Sync extends Service {
   constructor() {
     super(SERVICE_ID, true);
 
-    const startTime = process.hrtime();
-
     const defaults = {
       viewPriority: 3,
-      getTime: () => {
-        const time = process.hrtime(startTime);
-        return time[0] + time[1] * 1e-9;
-      },
+      getTime: (function() {
+        if (process && process.hrtime) {
+          const startTime = process.hrtime();
+
+          return () => {
+            const time = process.hrtime(startTime);
+            return time[0] + time[1] * 1e-9;
+          };
+        } else {
+          return () => performance.now();
+        }
+      })(),
       // @todo - add options to configure the sync service
     };
 

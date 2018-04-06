@@ -91,7 +91,7 @@ class SyncScheduler extends Service {
     this._syncedQueue = null;
 
     // init audio time based scheduler, sync service, and queue
-    this._platform = this.require('platform', { features: 'web-audio' });
+    // this._platform = this.require('platform', { features: 'web-audio' });
     this._sync = this.require('sync');
     this._syncedQueue = null;
   }
