@@ -1,4 +1,4 @@
-import EventEmitter from '../../utils/EventEmitter';
+import EventEmitter from '../utils/EventEmitter';
 import Service from '../core/Service';
 import serviceManager from '../core/serviceManager';
 

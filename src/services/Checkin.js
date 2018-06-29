@@ -94,14 +94,10 @@ class Checkin extends Service {
     super(SERVICE_ID, true);
 
     const defaults = {
-      showDialog: false,
       order: 'ascending',
-      viewPriority: 6,
     };
 
     this.configure(defaults);
-
-    this.require('platform');
 
     /**
      * Index given by the server.
@@ -138,8 +134,6 @@ class Checkin extends Service {
     // setup listeners for the server's response
     this.receive('position', this._onPositionResponse);
     this.receive('unavailable', this._onUnavailableResponse);
-
-    this.show();
   }
 
   /** @private */
@@ -148,8 +142,6 @@ class Checkin extends Service {
     // Remove listeners for the server's response
     this.removeListener('position', this._onPositionResponse);
     this.removeListener('unavailable', this._onUnavailableResponse);
-
-    this.hide();
   }
 
   /** @private */
@@ -161,13 +153,7 @@ class Checkin extends Service {
     if (coordinates !== null && !client.coordinates)
       client.coordinates = coordinates;
 
-    if (this.options.showDialog) {
-      const displayLabel = label || (index + 1).toString();
-      this.view.updateLabel(displayLabel);
-      this.view.setReadyCallback(this.ready.bind(this));
-    } else {
-      this.ready();
-    }
+    this.ready();
   }
 
   /** @private */

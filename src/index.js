@@ -21,5 +21,6 @@ export { default as serviceManager } from './core/serviceManager';
 export { default as Checkin } from './services/Checkin';
 export { default as ErrorReporter } from './services/ErrorReporter';
 export { default as Sync } from './services/Sync';
+export { default as SharedParams } from './services/SharedParams';
 // export { default as SyncScheduler } from './services/SyncScheduler';
 
